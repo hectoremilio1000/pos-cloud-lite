@@ -1,4 +1,12 @@
+# --- secretos Azure ---
+sp.json
+
+# --- artefactos Terraform ---
 .terraform/
 *.tfstate*
+*.plan
+
+# --- Node ---
 node_modules/
 *.tar
+sp.json
