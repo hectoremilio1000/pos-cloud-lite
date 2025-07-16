@@ -1,3 +1,4 @@
+# /Users/hectoremilio/Proyectos/growthsuitecompleto/Backend/pos-cloud-lite/01-variables.tf
 # 01-variables.tf
 # ────────────────────────────────────────────────────────────
 # Sufijo aleatorio para nombres únicos (ACR, Log Analytics…)
@@ -27,10 +28,14 @@ variable "pg_server" {
   default = "postgresflex"
 }
 
+variable "pg_password" {
+  type = string
+}
+
 # Etiqueta por defecto para la imagen Docker;
 # la sobreescribes con -var="image_tag=0.1.1" al hacer apply.
 variable "image_tag" {
   type    = string
-  default = "0.1.2"
+  default = "managed-by-github"
 }
 # ────────────────────────────────────────────────────────────

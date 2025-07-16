@@ -5,5 +5,8 @@ resource "azurerm_container_registry" "acr" {
   location            = azurerm_resource_group.rg.location
   sku                 = "Basic"
 
-  admin_enabled = false # ← antes era true
+  admin_enabled = true # ← antes era true
+}
+output "acr_login_server" {
+  value = azurerm_container_registry.acr.login_server
 }

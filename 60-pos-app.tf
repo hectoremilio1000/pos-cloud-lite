@@ -18,23 +18,14 @@ resource "azurerm_container_app" "pos" {
     identity = azurerm_user_assigned_identity.acr_pull.id
   }
 
-  # ➜ 5.3 Secreto DB (elige UNA de las dos variantes)
-  ## Variante A – Key Vault (si hiciste el paso 4)
-  secret {
-    name                = "db-url"
-    key_vault_secret_id = azurerm_key_vault_secret.db_url.id
-    identity            = azurerm_user_assigned_identity.acr_pull.id
+  secret 
+    name  = "db-url"
+    value = "postgresql://pgadmin:${var.pg_password}@${azurerm_postgresql_flexible_server.db.fqdn}/pos?sslmode=require"
   }
 
-  ## Variante B – secreto “local” (si saltaste Key Vault)
-  # secret {
-  #   name  = "db-url"
-  #   value = "postgresql://pgadmin:${random_password.pg_admin.result}@${azurerm_postgresql_flexible_server.db.fqdn}/pos"
-  # }
-
   template {
-    min_replicas = 0
-    max_replicas = 3
+    min_replicas = 1
+    max_replicas = 1
 
     container {
       name   = "web"
@@ -44,7 +35,7 @@ resource "azurerm_container_app" "pos" {
 
       env {
         name        = "DATABASE_URL"
-        secret_name = "db-url" # ← sin value
+        secret_name = "db-url"
       }
     }
 
@@ -65,4 +56,10 @@ resource "azurerm_container_app" "pos" {
   }
 
   tags = { env = "dev" }
+  
+  lifecycle {
+    ignore_changes = [
+      template[0].container[0].image
+    ]
+  }
 }
