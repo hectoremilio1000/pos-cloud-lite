@@ -10,3 +10,4 @@ sp.json
 node_modules/
 *.tar
 sp.json
+secret.auto.tfvars

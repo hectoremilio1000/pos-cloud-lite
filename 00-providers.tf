@@ -1,3 +1,4 @@
+#/Users/hectoremilio/Proyectos/growthsuitecompleto/Backend/pos-cloud-lite/00-providers.tf
 terraform {
   required_version = "~> 1.8"
 

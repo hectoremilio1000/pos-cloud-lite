@@ -1,3 +1,4 @@
+# /Users/hectoremilio/Proyectos/growthsuitecompleto/Backend/pos-cloud-lite/50-aca-env.tf
 resource "azurerm_container_app_environment" "aca_env" {
   name                = "pos-env"
   location            = azurerm_resource_group.rg.location

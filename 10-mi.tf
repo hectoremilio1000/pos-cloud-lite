@@ -1,4 +1,4 @@
-# 10-mi.tf
+# /Users/hectoremilio/Proyectos/growthsuitecompleto/Backend/pos-cloud-lite/10-mi.tf
 resource "azurerm_user_assigned_identity" "acr_pull" {
   name                = "pos-acr-pull-mi"
   location            = azurerm_resource_group.rg.location

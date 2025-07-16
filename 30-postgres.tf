@@ -1,3 +1,4 @@
+#/Users/hectoremilio/Proyectos/growthsuitecompleto/Backend/pos-cloud-lite/30-postgres.tf
 resource "random_password" "pg_admin" {
   length  = 20
   special = true

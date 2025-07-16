@@ -1,4 +1,4 @@
-# 60-pos-app.tf  (MODIFICADO)
+# /Users/hectoremilio/Proyectos/growthsuitecompleto/Backend/pos-cloud-lite/60-pos-app.tf
 
 resource "azurerm_container_app" "pos" {
   name                         = "pos-webapp"
@@ -18,7 +18,7 @@ resource "azurerm_container_app" "pos" {
     identity = azurerm_user_assigned_identity.acr_pull.id
   }
 
-  secret 
+  secret {
     name  = "db-url"
     value = "postgresql://pgadmin:${var.pg_password}@${azurerm_postgresql_flexible_server.db.fqdn}/pos?sslmode=require"
   }
@@ -56,7 +56,7 @@ resource "azurerm_container_app" "pos" {
   }
 
   tags = { env = "dev" }
-  
+
   lifecycle {
     ignore_changes = [
       template[0].container[0].image
